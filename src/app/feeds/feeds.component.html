@@ -1,0 +1,26 @@
+<h1 class="header">
+    <span class="material-symbols-outlined">
+        feed
+    </span>
+        Instafeed
+</h1>
+<div class="center" #uiElement style="overflow-y: auto;max-height:700px;" (scroll)="onScrollLoadData()" >
+<div *ngFor="let item of results['articles'];let i=index">
+    <p><b>{{item.source.name}}</b></p>
+    <img src={{item.urlToImage}} width="400" height="250" alt="">
+    <div style="margin-bottom:0">
+        <a><span class="material-symbols-outlined">
+            favorite
+        </span></a>&nbsp;
+        <span class="material-symbols-outlined">
+            chat_bubble
+        </span>&nbsp;
+        <span class="material-symbols-outlined">
+            send
+        </span>
+    </div>
+    <p [ngClass]="{'limitTextHeight': !isReadMore[i]}" [innerHTML]="item.description" style="width:400px"></p>
+    <button type="button" (click)="readMore(i)">{{ isReadMore[i] ? 'Read Less': 'Read More' }}</button>
+</div>
+</div>
+
